@@ -1,7 +1,6 @@
-// Add your OMDB API key here
 const API_KEY = 'd3d17cf1';
 
-// DOM Elements
+
 const searchInput = document.getElementById('movie-search');
 const searchBtn = document.getElementById('search-btn');
 const movieInfoDiv = document.getElementById('movie-info');
@@ -339,3 +338,4 @@ viewReviewsBtn.addEventListener('click', () => {
 
 
 setInterval(moveCarousel, 5000);
+
