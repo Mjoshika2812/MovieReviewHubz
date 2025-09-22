@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Review & Rating Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="dpw.webp" alt="Action Movie">
+            </div>
+            <div class="carousel-slide">
+                <img src="3i.webp" alt="Comedy Movie">
+            </div>
+            <div class="carousel-slide">
+                <img src="inter.webp" alt="Sci-Fi Movie">
+            </div>
+            <div class="carousel-slide">
+                <img src="sw.webp" alt="Drama Movie">
+            </div>
+        </div>
+
+        <div class="header-overlay">
+            <img src="mvh3.png" style="width: 330px;height: 88px;" alt="Movie Hub Logo" class="header-logo">
+            <div class="theme-switch-container">
+            <label class="theme-switch" for="checkbox">
+             <input type="checkbox" id="checkbox" />
+               <div class="slider round">
+                <i class="fas fa-sun light-icon"></i>
+                <i class="fas fa-moon dark-icon"></i>
+               </div>
+             </label>
+            </div>
+            <div class="search-container">
+                <input type="text" id="movie-search" placeholder="Search for a movie...">
+                <button id="search-btn">Search</button>
+                <button id="view-reviews-btn" class="view-reviews-btn">View My Reviews</button>
+            </div>
+        </div>
+    </header>
+    
+    <div id="suggestions-list" class="suggestions-list"></div>
+
+    <main>
+        <div id="initial-message">
+            <h2>Search for a movie to get started!</h2>
+        </div>
+
+        <div id="movie-info" class="hidden">
+            <div class="movie-details">
+                <img id="movie-poster" src="" alt="Movie Poster">
+                <div class="movie-text">
+                    <h2 id="movie-title"></h2>
+                    <p><strong>Year:</strong> <span id="movie-year"></span></p>
+                    <p><strong>Genre:</strong> <span id="movie-genre"></span></p>
+                    <p><strong>IMDb Rating:</strong> <span id="movie-rating"></span> / 10</p>
+                    <h3>Plot</h3>
+                    <p id="movie-plot"></p>
+                </div>
+            </div>
+            
+            <section class="review-section">
+                <h3>Rate and Review</h3>
+                <form id="review-form">
+                   <label for="user-rating-input">Your Rating:</label>
+                        <div class="star-rating" id="star-rating">
+                            <i class="far fa-star" data-value="1"></i>
+                            <i class="far fa-star" data-value="2"></i>
+                            <i class="far fa-star" data-value="3"></i>
+                            <i class="far fa-star" data-value="4"></i>
+                            <i class="far fa-star" data-value="5"></i>
+                        </div>
+                <input type="hidden" id="user-rating-input" name="user-rating" value="">
+                    <label for="review-text">Your Review:</label>
+                    <textarea id="review-text" rows="4" placeholder="Write your review here..."></textarea>
+                    <button type="submit" id="submit-review-btn">Submit Review</button>
+                </form>
+            </section>
+
+            <section class="reviews-list-section">
+                <h3>User Reviews</h3>
+                <ul id="reviews-list">
+                    </ul>
+            </section>
+        </div>
+    </main>
+    
+    <section id="reviewed-movies-section" class="hidden">
+        <h2>My Reviewed Movies</h2>
+        <ul id="reviewed-movies-list">
+            </ul>
+    </section>
+    <footer>
+        <p class="p1">an <img src="mvh3.png" style="width: 90px;height: 25px;top: 8px;position: relative;" alt="Movie Hub Logo" class="header-logo"> website</p>
+        <p class="copyright">&copy; 2025 by moviereviewhubz, Inc.</p>
+    </footer>
+
+    <script src="logic1.js"></script> 
+</body>
+</html>

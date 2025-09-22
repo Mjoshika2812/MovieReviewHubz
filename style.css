@@ -1,0 +1,732 @@
+/* General Body and Main Container */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.search-container {
+    position: relative; 
+    /* The rest of your search-container styles */
+}
+
+/* Other .suggestions-list styles here */
+
+.suggestions-list {
+    position: absolute;
+    top: 270px; /* Adjust this value to position it correctly under the search bar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px; /* Match the width of your search input */
+    max-height: 250px;
+    overflow-y: auto;
+    background: #333;
+    border: 1px solid #555;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* Star Rating */
+.star-rating {
+    display: inline-block;
+    font-size: 1.5em;
+    color: #ffd700; /* Yellow color for active stars */
+    cursor: pointer;
+}
+
+.star-rating .far.fa-star {
+    transition: color 0.2s, transform 0.2s;
+}
+
+.star-rating .fas.fa-star {
+    color: #ffd700;
+}
+
+.star-rating:hover .far.fa-star {
+    transform: scale(1.1);
+}
+
+/* For the filled stars on hover */
+.star-rating i:hover,
+.star-rating i:hover ~ i {
+    color: #ffcc00; /* A slightly different shade for hover effect */
+}
+
+/* Adjusting the star color for the light theme */
+body.light-theme .star-rating {
+    color: #ffaa00; /* A different color that looks good on a light background */
+}
+
+/* This class will be added by JavaScript to make the list visible */
+.suggestions-list.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e1e1e; /* Slightly lighter dark container */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    z-index: -1;
+}
+
+/* Header and Search Bar */
+header {
+    background-color: transparent;
+    padding: 0;
+    text-align: center;
+    box-shadow: none;
+    position: relative;
+    height: 400px; /* Adjust height based on your image dimensions */
+    overflow: hidden; /* This is key to hide overflowing slides */
+    border-radius: 0;
+}
+
+/* Styles for the Carousel */
+.carousel-container {
+    display: flex;
+    width: 400%; /* 100% per image * 4 images = 400% */
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+}
+
+.carousel-slide {
+    width: 25%; /* Each slide takes up 25% of the container */
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* The key change here */
+}
+
+/* Styles for the Overlay Content */
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay for readability */
+    color: white;
+    z-index: 1000; /* Ensures overlay is on top of the images */
+}
+
+/* Rest of your existing CSS remains the same */
+
+/* For light theme, you can adjust the overlay color */
+body.light-theme .header-overlay {
+    background: linear-gradient(to right, rgba(3, 3, 3, 0.945), rgba(11, 11, 11, 0.655));
+    color: #333;
+}
+
+#movie-search {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 25px;
+    width: 250px;
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Custom Scrollbar for the Suggestions List */
+
+/* WebKit-based browsers (Chrome, Safari, Edge) */
+.suggestions-list::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.suggestions-list::-webkit-scrollbar-track {
+    background: #3e3e3e; /* Color of the track */
+    border-radius: 10px;
+}
+
+.suggestions-list::-webkit-scrollbar-thumb {
+    background-color: #555; /* Color of the thumb */
+    border-radius: 10px;
+    border: 2px solid #3e3e3e; /* A small border to make it pop */
+}
+
+/* On hover, make the thumb slightly lighter */
+.suggestions-list::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+}
+
+
+/* Light Theme Scrollbar */
+body.light-theme .suggestions-list::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+body.light-theme .suggestions-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border: 2px solid #f0f0f0;
+}
+
+body.light-theme .suggestions-list::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
+body.light-theme .suggestions-list {
+    scrollbar-color: #ccc #f0f0f0;
+}
+
+.suggestions-list li {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically align items */
+    gap: 15px; /* Space between photo and text */
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.2s;
+    color: #e0e0e0;
+}
+
+.suggestions-list li:last-child {
+    border-bottom: none;
+}
+
+.suggestions-list li:hover {
+    background-color: #3e3e3e;
+}
+
+/* New CSS for the movie poster in suggestions */
+.suggestions-list img {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Light Theme Styles for Suggestions */
+body.light-theme .suggestions-list {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .suggestions-list li {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+body.light-theme .suggestions-list li:hover {
+    background-color: #f0f0f0;
+}
+
+#search-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db; /* A vibrant blue for contrast */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 600;
+}
+
+#search-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Theme Switch UI */
+.theme-switch-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #34495e; /* Match header color */
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 34px;
+    transition: background-color 0.4s;
+    border-style: solid;
+    border-color: white;
+}
+
+/* Sun and Moon Icons */
+.slider i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: white;
+    transition: all 0.4s;
+    
+}
+
+.light-icon {
+    left: 8px;
+    opacity: 0; /* Hidden by default */
+}
+
+.dark-icon {
+    right: 8px;
+    opacity: 1; /* Visible by default */
+}
+
+/* When the switch is checked (Light Theme) */
+input:checked + .slider {
+    background-color: #00d2ff;
+}
+
+input:checked + .slider .dark-icon {
+    opacity: 0;
+}
+
+input:checked + .slider .light-icon {
+    opacity: 1;
+}
+
+/* Page Sections and Info Display */
+#initial-message {
+    text-align: center;
+    padding: 80px 20px;
+    color: #999;
+    font-size: 1.2em;
+}
+
+#movie-info.hidden, #review-form.hidden {
+    display: none;
+}
+
+.movie-details {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+#movie-poster {
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#movie-poster:hover {
+    transform: scale(1.03);
+}
+
+.movie-text {
+    flex: 1;
+}
+
+/* Review Section */
+.review-section, .reviews-list-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #333;
+    transition: border-color 0.3s;
+}
+
+#review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#user-rating, #review-text {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: #2b2b2b;
+    color: #e0e0e0;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#submit-review-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2ecc71; /* A green for positive action */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 600;
+}
+
+#submit-review-btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
+
+/* Reviews List */
+#reviews-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#reviews-list li {
+    background-color: #2b2b2b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #3498db;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+#reviews-list li strong {
+    color: #7f8c8d; /* Muted gray for emphasis */
+    transition: color 0.3s;
+}
+
+/* Light Theme Styles */
+body.light-theme {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+body.light-theme main {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+body.light-theme header {
+    background-image: linear-gradient(to right, #3a7bd5, #00d2ff);
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+body.light-theme #movie-search,
+body.light-theme #user-rating,
+body.light-theme #review-text {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+body.light-theme #search-btn {
+    background-color: #004d99;
+    color: white;
+}
+
+body.light-theme #search-btn:hover {
+    background-color: #003366;
+}
+
+body.light-theme .review-section, 
+body.light-theme .reviews-list-section {
+    border-top: 1px solid #eee;
+}
+
+body.light-theme #submit-review-btn {
+    background-color: #28a745;
+}
+
+body.light-theme #submit-review-btn:hover {
+    background-color: #218838;
+}
+
+body.light-theme #reviews-list li {
+    background-color: #f9f9f9;
+    border-left: 4px solid #00d2ff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+body.light-theme #reviews-list li strong {
+    color: #337ab7;
+}
+
+body.light-theme .theme-text {
+    color: #333;
+}
+
+@media (max-width: 600px) {
+    .movie-details {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #movie-poster {
+        max-width: 150px;
+    }
+
+    .movie-text {
+        text-align: left;
+    }
+}
+
+/* ... (All your existing CSS) ... */
+
+/* My Reviews Button */
+.view-reviews-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f39c12; /* A warm orange for contrast */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.view-reviews-btn:hover {
+    background-color: #e67e22;
+}
+
+/* Reviewed Movies Section */
+#reviewed-movies-section {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#reviewed-movies-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+#reviewed-movies-list li {
+    background-color: #2b2b2b;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#reviewed-movies-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+#reviewed-movies-list img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #3e3e3e;
+}
+
+#reviewed-movies-list .movie-title-reviewed {
+    padding: 10px 5px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+/* Light Theme Styles */
+body.light-theme #reviewed-movies-section {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+body.light-theme .view-reviews-btn {
+    background-color: #f39c12;
+}
+
+body.light-theme .view-reviews-btn:hover {
+    background-color: #e67e22;
+}
+
+body.light-theme #reviewed-movies-list li {
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme #reviewed-movies-list img {
+    border-bottom: 1px solid #eee;
+}
+
+/* --- Footer Styles --- */
+footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.8em;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 3px 0;
+}
+
+.p1 {
+    margin: 0px 0;
+    font-size: 15px;
+}
+
+.copyright {
+    opacity: 0.7;
+}
+
+/* For the light theme */
+body.light-theme footer {
+    background-color: #333;
+    color: #fff;
+}
+
+/* --- Mobile Styles (Portrait) --- */
+
+@media (max-width: 768px) {
+    /* Main Content */
+    body {
+        font-size: 14px;
+    }
+
+    /* Header and Search */
+    header {
+        height: 300px;
+    }
+
+    .header-overlay {
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+    
+    .header-logo {
+        height: 60px;
+        width: 250px;
+    }
+
+    .search-container {
+        flex-direction: column;
+        width: 90%;
+        margin-top: 15px;
+        align-items: center; /* Center items for better spacing */
+        justify-content: center;
+    }
+
+    #movie-search {
+        width: 100%; /* Make search input full width */
+        padding: 10px 15px;
+        font-size: 0.9em;
+        margin-bottom: 10px;
+        box-sizing: border-box; /* Ensure padding doesn't affect total width */
+    }
+    
+    .search-container button {
+        width: 40%; /* Make buttons full width */
+        padding: 10px 15px;
+        font-size: 0.9em;
+        margin-left: 0;
+        margin-top: 5px;
+        box-sizing: border-box;
+    }
+
+    .suggestions-list {
+        width: 90%;
+        top: 200px; /* Adjust as needed for smaller screens */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .theme-switch-container {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Movie Info Section */
+    #movie-info {
+        padding: 20px;
+    }
+    
+    .movie-details {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #movie-poster {
+        width: 150px;
+        height: 225px;
+    }
+    
+    .movie-text {
+        text-align: center;
+    }
+    
+    .movie-text h2 {
+        font-size: 1.8em;
+    }
+    
+    /* Reviews and Forms */
+    .review-section, .reviews-list-section {
+        margin-top: 20px;
+    }
+    
+    #review-form {
+        gap: 10px;
+    }
+    
+    #review-form select, #review-form textarea {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    /* Reviewed Movies Section */
+    #reviewed-movies-section {
+        padding: 20px;
+    }
+    
+    #reviewed-movies-list li {
+        width: 120px;
+    }
+    
+    #reviewed-movies-list li img {
+        height: 180px;
+    }
+
+    .fa-solid, .fas {
+    font-size: 2px;
+    }    
+
+    .slider{
+        width: 50px;
+        height: 30px;
+        margin-left: 10px;
+    }
+
+     #reviewed-movies-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center; /* This is the key change */
+    }
+}
