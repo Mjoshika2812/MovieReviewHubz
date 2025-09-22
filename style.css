@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #121212;
@@ -61,7 +60,7 @@ body {
 
 body.light-theme .star-rating {
     color: #ffaa00; 
-
+}
 
 .suggestions-list.visible {
     opacity: 1;
@@ -713,3 +712,4 @@ body.light-theme footer {
     }
 
 }
+
