@@ -22,14 +22,12 @@ const reviewedMoviesSection = document.getElementById('reviewed-movies-section')
 const reviewedMoviesList = document.getElementById('reviewed-movies-list');
 const reviewForm = document.getElementById('review-form');
 
-// Carousel Elements
+
 const carouselContainer = document.querySelector('.carousel-container');
 const carouselSlides = document.querySelectorAll('.carousel-slide');
 let currentSlide = 0;
 
-// --- Helper Functions ---
 
-// Function to fetch movie data from OMDB API by title
 async function fetchMovie(title) {
     const url = `https://www.omdbapi.com/?t=${title}&apikey=${API_KEY}`;
     try {
@@ -43,7 +41,6 @@ async function fetchMovie(title) {
 }
 
 
-// Function to fetch search results for autocomplete
 async function searchMovies(query) {
     const url = `https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`;
     try {
@@ -56,7 +53,6 @@ async function searchMovies(query) {
     }
 }
 
-// Function to save reviewed movie to a master list in Local Storage
 function saveReviewedMovie(movie) {
     const reviewedMovies = JSON.parse(localStorage.getItem('reviewedMovies')) || {};
     reviewedMovies[movie.imdbID] = {
@@ -67,16 +63,14 @@ function saveReviewedMovie(movie) {
     localStorage.setItem('reviewedMovies', JSON.stringify(reviewedMovies));
 }
 
-// Function to save a review to Local Storage
+
 function saveReview(movieId, review) {
     const reviews = JSON.parse(localStorage.getItem(movieId)) || [];
     reviews.push(review);
     localStorage.setItem(movieId, JSON.stringify(reviews));
 }
 
-// --- Theme Management ---
 
-// Function to set the theme
 function setTheme(theme) {
     if (theme === 'light-theme') {
         document.body.classList.remove('dark-theme');
@@ -89,7 +83,7 @@ function setTheme(theme) {
     }
 }
 
-// Function to handle the theme switch
+
 function switchTheme(e) {
     if (e.target.checked) {
         setTheme('light-theme');
@@ -100,7 +94,7 @@ function switchTheme(e) {
     }
 }
 
-// Check for a saved theme on page load
+
 window.addEventListener('load', () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -110,9 +104,7 @@ window.addEventListener('load', () => {
     }
 });
 
-// --- Display Functions ---
 
-// Function to display movie info
 function displayMovie(movie) {
     initialMessage.classList.add('hidden');
     reviewedMoviesSection.classList.add('hidden');
@@ -136,7 +128,7 @@ function displayMovie(movie) {
     }
 }
 
-// Function to display suggestions
+
 function displaySuggestions(movies) {
     suggestionsList.innerHTML = '';
     
@@ -167,7 +159,7 @@ function displaySuggestions(movies) {
     }
 }
 
-// Function to load reviews from Local Storage
+
 function loadReviews(movieId) {
     const reviews = JSON.parse(localStorage.getItem(movieId)) || [];
     reviewsList.innerHTML = '';
@@ -182,7 +174,6 @@ function loadReviews(movieId) {
     }
 }
 
-// Function to load and display reviewed movies
 async function loadReviewedMovies() {
     initialMessage.classList.add('hidden');
     movieInfoDiv.classList.add('hidden');
@@ -212,7 +203,6 @@ async function loadReviewedMovies() {
     }
 }
 
-// Function to move the carousel
 function moveCarousel() {
     currentSlide++;
     if (currentSlide === carouselSlides.length) {
@@ -222,12 +212,9 @@ function moveCarousel() {
 }
 
 
-// --- Event Listeners ---
-
-// Event listener for the theme switch
 themeSwitch.addEventListener('change', switchTheme);
 
-// Event listener for search button click
+
 searchBtn.addEventListener('click', async () => {
     const title = searchInput.value.trim();
     if (title) {
@@ -250,7 +237,7 @@ searchBtn.addEventListener('click', async () => {
     }
 });
 
-// Event listener for search input for autocomplete
+
 searchInput.addEventListener('input', async () => {
     const query = searchInput.value.trim();
     if (query.length >= 3) {
@@ -261,19 +248,19 @@ searchInput.addEventListener('input', async () => {
     }
 });
 
-// Hide suggestions when clicking outside the search container
+
 document.addEventListener('click', (event) => {
     if (!event.target.closest('.search-container')) {
         suggestionsList.classList.remove('visible');
     }
 });
 
-// Event listener for review form submission
+
 reviewForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // Prevents the page from reloading
+    e.preventDefault(); 
 
     const movieId = movieInfoDiv.dataset.movieId;
-    const userRating = userRatingInput.value; // Get the rating from the hidden input
+    const userRating = userRatingInput.value; 
     const userReview = reviewText.value.trim();
 
     if (userReview && movieId && userRating) {
@@ -293,8 +280,8 @@ reviewForm.addEventListener('submit', (e) => {
         saveReviewedMovie(movieDetails);
 
         reviewText.value = '';
-        userRatingInput.value = ''; // Clear the hidden input
-        // Reset the stars to an empty state
+        userRatingInput.value = ''; 
+ 
         stars.forEach(s => {
             s.classList.remove('fas');
             s.classList.add('far');
@@ -304,12 +291,11 @@ reviewForm.addEventListener('submit', (e) => {
     }
 });
 
-// DOM Elements
-// ... (keep all other DOM elements as they are)
+
 const stars = document.querySelectorAll('#star-rating i');
 const userRatingInput = document.getElementById('user-rating-input');
 
-// Event Listeners for star rating
+
 stars.forEach(star => {
     star.addEventListener('click', () => {
         const rating = star.getAttribute('data-value');
@@ -345,10 +331,11 @@ stars.forEach(star => {
     });
 });
 
-// Event listener for 'View My Reviews' button
+
 viewReviewsBtn.addEventListener('click', () => {
     loadReviewedMovies();
 });
 
-// Start the automatic carousel slideshow
+
+
 setInterval(moveCarousel, 5000);
